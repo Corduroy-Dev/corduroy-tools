@@ -8,8 +8,8 @@ cd "$(dirname "$0")/.."
 
 VERSION=$(jq -r '.version' .claude-plugin/marketplace.json)
 DIST="dist"
-MARKETPLACE_ZIP="$DIST/corduroy-plugins-v${VERSION}.zip"
-COWORK_DIR="$DIST/corduroy-plugins-v${VERSION}-cowork"
+MARKETPLACE_ZIP="$DIST/corduroy-tools-v${VERSION}.zip"
+COWORK_DIR="$DIST/corduroy-tools-v${VERSION}-cowork"
 
 fail() { echo "FAIL: $1" >&2; exit 1; }
 pass() { echo "  ✓ $1"; }

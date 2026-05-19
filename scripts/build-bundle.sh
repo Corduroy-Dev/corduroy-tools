@@ -2,8 +2,8 @@
 # scripts/build-bundle.sh — produces customer-facing delivery artifacts
 #
 # Outputs (in dist/):
-#   1. corduroy-plugins-v<VERSION>.zip       — full marketplace bundle (Claude Code CLI install)
-#   2. corduroy-plugins-v<VERSION>-cowork/   — directory of 20 per-plugin zips (Cowork upload)
+#   1. corduroy-tools-v<VERSION>.zip       — full marketplace bundle (Claude Code CLI install)
+#   2. corduroy-tools-v<VERSION>-cowork/   — directory of 20 per-plugin zips (Cowork upload)
 #   3. SHA256SUMS                            — checksums for all artifacts
 #
 # Run scripts/verify-bundle.sh after this to gate delivery.
@@ -16,8 +16,8 @@ VERSION=$(jq -r '.version' .claude-plugin/marketplace.json)
 [ -n "$VERSION" ] && [ "$VERSION" != "null" ] || { echo "FAIL: marketplace.json has no version" >&2; exit 1; }
 
 DIST="dist"
-MARKETPLACE_ZIP="$DIST/corduroy-plugins-v${VERSION}.zip"
-COWORK_DIR="$DIST/corduroy-plugins-v${VERSION}-cowork"
+MARKETPLACE_ZIP="$DIST/corduroy-tools-v${VERSION}.zip"
+COWORK_DIR="$DIST/corduroy-tools-v${VERSION}-cowork"
 
 rm -rf "$DIST"
 mkdir -p "$DIST" "$COWORK_DIR"
@@ -71,8 +71,8 @@ echo "   $count per-plugin zips built"
 # ---- 3. Checksums ----
 echo "→ Computing checksums..."
 ( cd "$DIST" && {
-    sha256sum "corduroy-plugins-v${VERSION}.zip"
-    find "corduroy-plugins-v${VERSION}-cowork" -name '*.zip' -print0 | sort -z | xargs -0 sha256sum
+    sha256sum "corduroy-tools-v${VERSION}.zip"
+    find "corduroy-tools-v${VERSION}-cowork" -name '*.zip' -print0 | sort -z | xargs -0 sha256sum
   } > SHA256SUMS )
 echo "   wrote $DIST/SHA256SUMS"
 

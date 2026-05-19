@@ -6,12 +6,12 @@ This repository is a private derivative of [`anthropics/financial-services`](htt
 
 ## What this is
 
-A Claude plugin marketplace hosted at `github.com/Corduroy-Dev/corduroy-plugins` (public). The repo is **domain-scoped** so adding new industry verticals later is just a new subdirectory.
+A Claude plugin marketplace hosted at `github.com/Corduroy-Dev/corduroy-tools` (public). The repo is **domain-scoped** so adding new industry verticals later is just a new subdirectory.
 
 - `.claude-plugin/marketplace.json` — the catalog (name `corduroy`), with `category` + `tags` per plugin
 - 18 plugins as of v0.2.0: 17 under `plugins/financial-services/` (10 agents, 7 verticals, 10 managed-agent cookbooks) and 1 under `plugins/shared/` (the M365 installer)
 
-Customers install by pasting the GitHub URL into Claude Code (`/plugin marketplace add Corduroy-Dev/corduroy-plugins`) or Cowork (Customize → Browse plugins → Personal → + → Add marketplace from GitHub). Offline zip bundles produced by `scripts/build-bundle.sh` are still available for air-gapped customers.
+Customers install by pasting the GitHub URL into Claude Code (`/plugin marketplace add Corduroy-Dev/corduroy-tools`) or Cowork (Customize → Browse plugins → Personal → + → Add marketplace from GitHub). Offline zip bundles produced by `scripts/build-bundle.sh` are still available for air-gapped customers.
 
 ## Repository layout
 
@@ -69,7 +69,7 @@ git tag v0.1.1
 git push origin main --tags
 ```
 
-The GitHub push is what makes the release live for customers — Claude Code/Cowork pull from `Corduroy-Dev/corduroy-plugins`. The zip artifacts are kept for air-gapped delivery; upload them as GitHub release assets if customers want a stable download URL.
+The GitHub push is what makes the release live for customers — Claude Code/Cowork pull from `Corduroy-Dev/corduroy-tools`. The zip artifacts are kept for air-gapped delivery; upload them as GitHub release assets if customers want a stable download URL.
 
 **Versioning rule:** `version` lives **only** in each `.claude-plugin/plugin.json`. Don't add a per-plugin `version` to `marketplace.json` entries — when both are set, plugin.json silently wins, which masks the marketplace value. `bump-versions.sh` is the single canonical bumper.
 

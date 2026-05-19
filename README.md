@@ -19,13 +19,13 @@ See **[INSTALL.md](./INSTALL.md)** for the full customer install instructions. T
 **Claude Code:**
 
 ```
-/plugin marketplace add Corduroy-Dev/corduroy-plugins
+/plugin marketplace add Corduroy-Dev/corduroy-tools
 /plugin install financial-analysis@corduroy
 /plugin install pitch-agent@corduroy
 # ...
 ```
 
-**Cowork (Claude.ai desktop):** Customize → Browse plugins → Personal → + → Add marketplace from GitHub → paste `https://github.com/Corduroy-Dev/corduroy-plugins`. Then install plugins from the browser.
+**Cowork (Claude.ai desktop):** Customize → Browse plugins → Personal → + → Add marketplace from GitHub → paste `https://github.com/Corduroy-Dev/corduroy-tools`. Then install plugins from the browser.
 
 Offline install bundles (zip + per-plugin Cowork uploads) are available on request — see [INSTALL.md](./INSTALL.md).
 
