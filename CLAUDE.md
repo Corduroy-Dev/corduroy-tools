@@ -9,7 +9,7 @@ This repository is a private derivative of [`anthropics/financial-services`](htt
 A Claude plugin marketplace hosted at `github.com/Corduroy-Dev/corduroy-tools` (public). The repo is **domain-scoped** so adding new industry verticals later is just a new subdirectory.
 
 - `.claude-plugin/marketplace.json` — the catalog (name `corduroy`), with `category` + `tags` per plugin
-- 18 plugins as of v0.2.0: 17 under `plugins/financial-services/` (10 agents, 7 verticals, 10 managed-agent cookbooks) and 1 under `plugins/shared/` (the M365 installer)
+- 17 plugins as of v0.4.0: all under `plugins/financial-services/` — 10 agents, 7 verticals, plus 10 managed-agent cookbooks (cookbooks aren't standalone plugins but ride along as reference for headless deployment)
 
 Customers install by pasting the GitHub URL into Claude Code (`/plugin marketplace add Corduroy-Dev/corduroy-tools`) or Cowork (Customize → Browse plugins → Personal → + → Add marketplace from GitHub). Offline zip bundles produced by `scripts/build-bundle.sh` are still available for air-gapped customers.
 
@@ -34,8 +34,6 @@ plugins/
       cookbooks/<slug>/                      # Managed Agent cookbooks for this vertical's agents
         agent.yaml                           # references ../../agents/<slug>/ (same depth)
         subagents/*.yaml
-  shared/                                    # cross-domain tooling
-    claude-for-msft-365-install/             # admin tooling for the M365 add-in
 scripts/
   bump-versions.sh                           # version bumper — single source of truth
   build-bundle.sh                            # produces customer zips

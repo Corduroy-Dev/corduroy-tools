@@ -1,6 +1,6 @@
 {
   "name": "gl-reconciler",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Finds breaks, traces root cause, routes for sign-off",
   "author": {
     "name": "Corduroy Intelligence",

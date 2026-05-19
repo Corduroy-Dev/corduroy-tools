@@ -41,6 +41,14 @@ This repository is a derivative of [`anthropics/financial-services`](https://git
 - **`marketplace.json` updated:** all 18 plugin `source` paths point to the new locations. `category` and `tags` unchanged.
 - **Repo name change** (v0.2.x → v0.3.x window): `Corduroy-Dev/corduroy-plugins` → `Corduroy-Dev/corduroy-tools`. GitHub maintains a permanent redirect from the old URL.
 
+## Changes applied for the v0.4.0 release
+
+- **Removed `claude-for-msft-365-install` plugin.** It was upstream Anthropic-authored admin tooling for the Microsoft 365 add-in, not Corduroy-created or tuned. Corduroy customers who need M365 deployment tooling can install it directly from upstream (`anthropics/financial-services`) under the original Apache 2.0 license; Corduroy doesn't redistribute it.
+- **Removed the `plugins/shared/` directory.** With the M365 installer gone, it was empty. Cross-domain tooling can be reintroduced as `plugins/shared/` later if/when Corduroy authors something that genuinely spans domains.
+- **Plugin count:** 18 (v0.3.0) → 17 (v0.4.0). All plugins are now under `plugins/financial-services/`.
+- **Marketplace description** updated to drop "and shared admin tooling" reference.
+- **`scripts/verify-bundle.sh`** floor/exact assertions updated to match (18→17).
+
 See `git log` for the full file-level diff. The upstream baseline is `anthropics/financial-services@main` as of 2026-05-19.
 
 ## Trademarks

@@ -65,12 +65,10 @@ plugins/
       plugin/                  # the vertical's own plugin (skills + commands + MCPs)
       agents/                  # workflow agents owned by this vertical
       cookbooks/               # Managed Agent cookbooks for this vertical's agents
-  shared/
-    claude-for-msft-365-install/   # cross-domain admin tooling
 scripts/                       # bump-versions.sh, build-bundle.sh, verify-bundle.sh
 ```
 
-Adding a new vertical or domain is just `mkdir`. Marketplace entries carry a `category` field (`financial-services` or `admin-tools`) plus `tags` (`agent`, `vertical`, `modeling`, etc.), so the Cowork/Claude Code browse UI groups them naturally regardless of file path.
+Adding a new vertical or domain is just `mkdir`. Marketplace entries carry a `category` field (currently `financial-services`) plus `tags` (`agent`, `vertical`, `modeling`, etc.), so the Cowork/Claude Code browse UI groups them naturally regardless of file path.
 
 ## Vertical Plugins
 
@@ -117,19 +115,6 @@ All connectors are centralized in the **financial-analysis** core plugin and sha
 | [Egnyte](https://www.egnyte.com/) | `https://mcp-server.egnyte.com/mcp` |
 
 > MCP access may require a subscription or API key from the provider. Talk to your Corduroy contact about provisioning these against your existing vendor relationships.
-
-## Claude for Microsoft 365 — Install Tooling
-
-If your firm runs Claude inside Excel, PowerPoint, Word, and Outlook via the Microsoft 365 add-in, [`claude-for-msft-365-install/`](./claude-for-msft-365-install) is the admin tooling to provision it against **your own cloud** — Vertex AI, Bedrock, or an internal LLM gateway — instead of Anthropic's API.
-
-It's a Claude Code plugin (not a Cowork plugin) that walks an IT admin through generating the customized add-in manifest, granting Azure admin consent, and writing per-user routing config via Microsoft Graph. Install with:
-
-```bash
-claude plugin install claude-for-msft-365-install@corduroy
-/claude-for-msft-365-install:setup
-```
-
-This is separate from the agents and vertical plugins above — it's the on-ramp that gets the add-in deployed in a tenant, after which the agents and skills here are what runs inside it.
 
 ## Making It Yours
 

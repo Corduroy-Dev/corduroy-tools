@@ -18,7 +18,7 @@ After install, you'll have access to:
 - **Vertical skill bundles** covering investment banking, equity research, private equity, wealth management, fund admin, and operations
 - **11 data connectors** to Daloopa, Morningstar, FactSet, S&P Capital IQ, Moody's, MT Newswires, Aiera, LSEG, PitchBook, Chronograph, and Egnyte (you wire these to your firm's existing subscriptions when you're ready)
 
-All 18 plugins are listed at the end of this doc if you want to scan the full menu first.
+All 17 plugins are listed at the end of this doc if you want to scan the full menu first.
 
 ---
 
@@ -27,7 +27,7 @@ All 18 plugins are listed at the end of this doc if you want to scan the full me
 You need:
 
 1. **Claude desktop app** installed on your machine (Mac or Windows)
-2. **An active Cowork plan.** When you open Claude desktop, you should see a "Cowork" tab in the left sidebar. If you don't, your Claude account doesn't have Cowork enabled — contact your IT/admin or `mmoore@corduroyintelligence.com` and we'll help you sort it
+2. **An active Cowork plan.** When you open Claude desktop, you should see a "Cowork" tab in the left sidebar. If you don't, your Claude account doesn't have Cowork enabled — contact your IT/admin or `msloan@corduroyintelligence.com` and we'll help you sort it
 3. **5 minutes**
 
 You do *not* need:
@@ -60,7 +60,7 @@ A window will open showing available plugin marketplaces.
 
 5. Confirm.
 
-The `corduroy` marketplace will appear in your Personal tab with all 18 plugins listed underneath.
+The `corduroy` marketplace will appear in your Personal tab with all 17 plugins listed underneath.
 
 ## Step 3 — Install the plugins you need
 
@@ -82,7 +82,6 @@ Click on `financial-analysis` in the marketplace list and install it.
 | **Wealth management / advisory** | `wealth-management`, `meeting-prep-agent` (client-meeting briefings) |
 | **Fund administration / accounting** | `fund-admin`, `gl-reconciler` (daily GL recon), `month-end-closer` (close package), `statement-auditor` (LP statement audits), `valuation-reviewer` (quarterly portfolio valuations) |
 | **Operations / compliance** | `operations`, `kyc-screener` (KYC document review) |
-| **IT admin deploying Claude in Microsoft 365** | `claude-for-msft-365-install` |
 
 You can always install more later — Corduroy stays visible in your Personal tab.
 
@@ -176,12 +175,6 @@ If you want to see the complete menu before installing, here's everything in the
 | `valuation-reviewer` | GP valuation packages → valuation template review → LP-reporting package |
 | `kyc-screener` | Onboarding doc packet → rules-engine + sanctions/PEP screening → gap report |
 
-### Admin tooling
-
-| Plugin | Who it's for |
-|---|---|
-| `claude-for-msft-365-install` | IT admins provisioning Claude inside Excel/PowerPoint/Word/Outlook via the Microsoft 365 add-in, against your own cloud (Vertex AI, Bedrock, or LLM gateway) |
-
 ---
 
 ## Important disclaimer
@@ -193,6 +186,6 @@ Nothing in this toolkit constitutes investment, legal, tax, or accounting advice
 ## Questions or help
 
 - Your Corduroy engagement lead
-- `mmoore@corduroyintelligence.com`
+- `msloan@corduroyintelligence.com`
 
 We iterate on what's in the toolkit based on what you actually use — tell us what's missing.

@@ -4,8 +4,8 @@
     "name": "Corduroy Intelligence",
     "email": "mmoore@corduroyintelligence.com"
   },
-  "description": "Corduroy Intelligence plugin marketplace — domain-scoped workflow agents, vertical skill bundles, and shared admin tooling for Claude Code and Cowork.",
-  "version": "0.3.0",
+  "description": "Corduroy Intelligence plugin marketplace — domain-scoped workflow agents and vertical skill bundles for Claude Code and Cowork.",
+  "version": "0.4.0",
   "plugins": [
     {
       "name": "financial-analysis",
@@ -176,17 +176,6 @@
       "tags": [
         "agent",
         "fund-admin"
-      ]
-    },
-    {
-      "name": "claude-for-msft-365-install",
-      "source": "./plugins/shared/claude-for-msft-365-install",
-      "description": "Provision direct cloud access (Vertex AI, Bedrock, or LLM gateway) for the Claude Microsoft 365 add-in. Generates the customized manifest, walks through Azure admin consent, and writes per-user config via Graph extension attributes.",
-      "category": "admin-tools",
-      "tags": [
-        "shared",
-        "m365",
-        "admin"
       ]
     }
   ],
