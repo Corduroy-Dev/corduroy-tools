@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/corduroy-logo.png" alt="Corduroy Intelligence" width="120" />
+</p>
+
 # Corduroy Plugins for Financial Services
 
 Workflow agents, vertical skill bundles, and data connectors for FINRA/SEC-regulated firms — credit funds, private equity, family offices, real estate operators, wealth advisors. Install them as plugins for Claude Code or Cowork, then tune them to your firm's processes.

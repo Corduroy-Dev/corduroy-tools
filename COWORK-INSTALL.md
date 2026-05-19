@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/corduroy-logo.png" alt="Corduroy Intelligence" width="120" />
+</p>
+
 # Installing Corduroy in Claude Cowork
 
 This guide walks you through adding Corduroy's financial-services toolkit to your Claude Cowork workspace. Takes about 5 minutes. You don't need a GitHub account or any developer tools — just the Claude desktop app and an active Cowork plan.
