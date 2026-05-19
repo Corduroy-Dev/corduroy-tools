@@ -32,9 +32,9 @@ for f in .claude-plugin/marketplace.json LICENSE NOTICE MODIFICATIONS.md README.
 done
 pass "required files present in marketplace zip"
 
-# spglobal's own LICENSE preserved
-[ -f "$TMP/plugins/partner-built/spglobal/LICENSE" ] || fail "spglobal LICENSE stripped from marketplace zip"
-pass "spglobal LICENSE preserved"
+# (Historical: spglobal LICENSE was required at v0.1.0. Removed in v0.2.0
+# alongside the partner-built plugins themselves. Re-add this check if/when
+# the partner plugins are reintroduced.)
 
 # Marketplace metadata
 MP_NAME=$(jq -r '.name' "$TMP/.claude-plugin/marketplace.json")
@@ -55,7 +55,7 @@ while IFS= read -r f; do
   [ "$VER" = "$VERSION" ] || fail "$f version=$VER (expected $VERSION)"
   count=$((count + 1))
 done < <(find "$TMP" -path '*/.claude-plugin/plugin.json' -not -path "$TMP/.claude-plugin/*" | sort)
-[ "$count" -ge 20 ] || fail "expected >=20 plugin.json files in marketplace zip, got $count"
+[ "$count" -ge 18 ] || fail "expected >=18 plugin.json files in marketplace zip, got $count"
 pass "$count plugin.json files: all valid, Corduroy-authored, version $VERSION"
 
 # Branding sweep: no upstream strings leak into plugin/skill content.
@@ -85,7 +85,7 @@ pass "no upstream branding strings in plugin-internal content"
 # ---- Verify per-plugin Cowork zips ----
 echo "→ Verifying Cowork per-plugin zips..."
 cowork_count=$(find "$COWORK_DIR" -name 'corduroy-*-v*.zip' | wc -l | tr -d ' ')
-[ "$cowork_count" = "20" ] || fail "expected 20 Cowork plugin zips, got $cowork_count"
+[ "$cowork_count" = "18" ] || fail "expected 18 Cowork plugin zips, got $cowork_count"
 pass "$cowork_count Cowork plugin zips present"
 
 # Spot-check one Cowork zip: must have plugin.json at .claude-plugin/plugin.json (zip root)

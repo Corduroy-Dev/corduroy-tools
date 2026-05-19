@@ -1,0 +1,9 @@
+{
+  "name": "earnings-reviewer",
+  "version": "0.2.0",
+  "description": "Earnings call and filings to model update to note draft",
+  "author": {
+    "name": "Corduroy Intelligence",
+    "email": "mmoore@corduroyintelligence.com"
+  }
+}

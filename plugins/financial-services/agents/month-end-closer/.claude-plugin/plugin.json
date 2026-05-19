@@ -1,0 +1,9 @@
+{
+  "name": "month-end-closer",
+  "version": "0.2.0",
+  "description": "Accruals, roll-forwards, variance commentary",
+  "author": {
+    "name": "Corduroy Intelligence",
+    "email": "mmoore@corduroyintelligence.com"
+  }
+}

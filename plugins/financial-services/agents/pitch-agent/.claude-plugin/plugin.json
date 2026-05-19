@@ -1,0 +1,9 @@
+{
+  "name": "pitch-agent",
+  "version": "0.2.0",
+  "description": "Comps, precedents, LBO to a branded pitch deck, end to end",
+  "author": {
+    "name": "Corduroy Intelligence",
+    "email": "mmoore@corduroyintelligence.com"
+  }
+}
