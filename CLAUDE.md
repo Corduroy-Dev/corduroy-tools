@@ -15,39 +15,62 @@ Customers install by pasting the GitHub URL into Claude Code (`/plugin marketpla
 
 ## Repository layout
 
+The repo is **two-level scoped** — by domain (financial-services; future: real-estate, legal, …) and within each domain by **vertical** (the workflow team: investment-banking, equity-research, fund-admin, …). Each vertical groups its own plugin, agents, and cookbooks so all the code for one workflow lives in one folder.
+
 ```
-.claude-plugin/marketplace.json      # the catalog (name: corduroy)
+.claude-plugin/marketplace.json              # the catalog (name: corduroy)
 plugins/
-  financial-services/                # domain dir — first vertical we ship
-    agents/<slug>/                   # workflow agents (self-contained)
-      .claude-plugin/plugin.json
-      agents/<slug>.md
-      skills/                        # bundled copies, synced from ../verticals/
-    verticals/<vertical>/            # FSI verticals — skill sources, commands, MCPs
-      .claude-plugin/plugin.json
-      commands/
-      skills/
-      .mcp.json
-    cookbooks/<slug>/                # Managed Agent cookbooks (one per agent)
-      agent.yaml                     # references ../../agents/<slug>/
-      subagents/*.yaml
-  shared/                            # cross-domain tooling
-    claude-for-msft-365-install/     # admin tooling for the M365 add-in
+  financial-services/                        # domain (first one we ship)
+    <vertical>/                              # e.g. investment-banking, fund-admin
+      plugin/                                # the vertical's own plugin
+        .claude-plugin/plugin.json
+        commands/
+        skills/
+        .mcp.json
+      agents/<slug>/                         # workflow agents owned by this vertical
+        .claude-plugin/plugin.json
+        agents/<slug>.md
+        skills/                              # bundled copies of the skills used
+      cookbooks/<slug>/                      # Managed Agent cookbooks for this vertical's agents
+        agent.yaml                           # references ../../agents/<slug>/ (same depth)
+        subagents/*.yaml
+  shared/                                    # cross-domain tooling
+    claude-for-msft-365-install/             # admin tooling for the M365 add-in
 scripts/
-  bump-versions.sh                   # version bumper — single source of truth
-  build-bundle.sh                    # produces customer zips
-  verify-bundle.sh                   # gates delivery (run before shipping)
-NOTICE                               # Apache 2.0 §4(c) attribution — DO NOT REMOVE
-MODIFICATIONS.md                     # Apache 2.0 §4(b) modifications notice
-LICENSE                              # Apache 2.0 (upstream) — DO NOT REMOVE
+  bump-versions.sh                           # version bumper — single source of truth
+  build-bundle.sh                            # produces customer zips
+  verify-bundle.sh                           # gates delivery (run before shipping)
+NOTICE                                       # Apache 2.0 §4(c) attribution — DO NOT REMOVE
+MODIFICATIONS.md                             # Apache 2.0 §4(b) modifications notice
+LICENSE                                      # Apache 2.0 (upstream) — DO NOT REMOVE
 ```
 
-## Adding a new domain
+## Vertical → agent mapping (as of v0.3.0)
+
+| Vertical | Agents owned |
+|---|---|
+| `financial-analysis` | `model-builder` |
+| `investment-banking` | `pitch-agent` |
+| `equity-research` | `earnings-reviewer`, `market-researcher` |
+| `wealth-management` | `meeting-prep-agent` |
+| `private-equity` | *(no agents yet — vertical plugin available standalone)* |
+| `fund-admin` | `gl-reconciler`, `month-end-closer`, `statement-auditor`, `valuation-reviewer` |
+| `operations` | `kyc-screener` |
+
+## Adding a new domain or vertical
 
 ```bash
-mkdir -p plugins/<domain>/{agents,verticals,cookbooks}
-# Author plugins under those dirs with their own .claude-plugin/plugin.json.
-# Add marketplace.json entries with category: "<domain>" + relevant tags.
+# New domain:
+mkdir -p plugins/<domain>/<vertical>/{plugin,agents,cookbooks}
+
+# New vertical inside an existing domain:
+mkdir -p plugins/financial-services/<new-vertical>/{plugin,agents,cookbooks}
+
+# Either way:
+#   author plugin/.claude-plugin/plugin.json (the vertical plugin)
+#   author agents/<slug>/.claude-plugin/plugin.json (each agent)
+#   author cookbooks/<slug>/agent.yaml (each cookbook, references ../agents/<slug>/)
+#   add marketplace.json entries with category + tags
 # bump-versions.sh, build-bundle.sh, verify-bundle.sh are path-agnostic
 # (find walks the whole tree), so no script changes needed.
 ```
@@ -55,7 +78,7 @@ mkdir -p plugins/<domain>/{agents,verticals,cookbooks}
 ## Editing plugins
 
 1. Edit the file in place. Markdown changes take effect immediately for any installed plugin once the customer runs `/plugin update <name>@corduroy`.
-2. If you edit a skill in `plugins/<domain>/verticals/<vertical>/skills/<skill>/`, propagate to any agent that bundles it: `find plugins/<domain>/agents -path "*<skill-name>*" -name SKILL.md` to find the bundled copies.
+2. If you edit a skill in `plugins/<domain>/<vertical>/plugin/skills/<skill>/`, propagate to any agent in the same vertical that bundles it: `find plugins/<domain>/<vertical>/agents -name SKILL.md | xargs grep -l <skill-name>` to find the bundled copies.
 3. Run `claude plugin validate .` to schema-check the marketplace and every plugin.json.
 
 ## Cutting a release

@@ -37,35 +37,36 @@ Each agent plugin is **self-contained** — it bundles the skills it uses, so in
 
 | Function | Agent | What it does |
 |---|---|---|
-| **Coverage & advisory** | **[Pitch Agent](./plugins/financial-services/agents/pitch-agent)** | Comps, precedents, LBO → branded pitch deck, end to end |
-| | **[Meeting Prep Agent](./plugins/financial-services/agents/meeting-prep-agent)** | Briefing pack before every client meeting |
-| **Research & modeling** | **[Market Researcher](./plugins/financial-services/agents/market-researcher)** | Sector or theme → industry overview, competitive landscape, peer comps, ideas shortlist |
-| | **[Earnings Reviewer](./plugins/financial-services/agents/earnings-reviewer)** | Earnings call + filings → model update → note draft |
-| | **[Model Builder](./plugins/financial-services/agents/model-builder)** | DCF, LBO, 3-statement, comps — live in Excel |
-| **Fund admin & finance ops** | **[Valuation Reviewer](./plugins/financial-services/agents/valuation-reviewer)** | Ingests GP packages, runs valuation template, stages LP reporting |
-| | **[GL Reconciler](./plugins/financial-services/agents/gl-reconciler)** | Finds breaks, traces root cause, routes for sign-off |
-| | **[Month-End Closer](./plugins/financial-services/agents/month-end-closer)** | Accruals, roll-forwards, variance commentary |
-| | **[Statement Auditor](./plugins/financial-services/agents/statement-auditor)** | Audits LP statements before distribution |
-| **Operations & onboarding** | **[KYC Screener](./plugins/financial-services/agents/kyc-screener)** | Parses onboarding docs, runs the rules engine, flags gaps |
+| **Coverage & advisory** | **[Pitch Agent](./plugins/financial-services/investment-banking/agents/pitch-agent)** | Comps, precedents, LBO → branded pitch deck, end to end |
+| | **[Meeting Prep Agent](./plugins/financial-services/wealth-management/agents/meeting-prep-agent)** | Briefing pack before every client meeting |
+| **Research & modeling** | **[Market Researcher](./plugins/financial-services/equity-research/agents/market-researcher)** | Sector or theme → industry overview, competitive landscape, peer comps, ideas shortlist |
+| | **[Earnings Reviewer](./plugins/financial-services/equity-research/agents/earnings-reviewer)** | Earnings call + filings → model update → note draft |
+| | **[Model Builder](./plugins/financial-services/financial-analysis/agents/model-builder)** | DCF, LBO, 3-statement, comps — live in Excel |
+| **Fund admin & finance ops** | **[Valuation Reviewer](./plugins/financial-services/fund-admin/agents/valuation-reviewer)** | Ingests GP packages, runs valuation template, stages LP reporting |
+| | **[GL Reconciler](./plugins/financial-services/fund-admin/agents/gl-reconciler)** | Finds breaks, traces root cause, routes for sign-off |
+| | **[Month-End Closer](./plugins/financial-services/fund-admin/agents/month-end-closer)** | Accruals, roll-forwards, variance commentary |
+| | **[Statement Auditor](./plugins/financial-services/fund-admin/agents/statement-auditor)** | Audits LP statements before distribution |
+| **Operations & onboarding** | **[KYC Screener](./plugins/financial-services/operations/agents/kyc-screener)** | Parses onboarding docs, runs the rules engine, flags gaps |
 
-For Managed Agent deployment — `agent.yaml`, leaf-worker subagents, steering-event examples, and per-agent security notes — see **[plugins/financial-services/cookbooks/](./plugins/financial-services/cookbooks)**.
+For Managed Agent deployment — `agent.yaml`, leaf-worker subagents, steering-event examples, and per-agent security notes — see the `cookbooks/` directory inside each vertical (e.g. [investment-banking/cookbooks/](./plugins/financial-services/investment-banking/cookbooks)).
 
 ## Repository Layout
 
-The repo is **domain-scoped** — each industry vertical gets its own subdirectory under `plugins/`. Today only `financial-services/` is populated; future domains (real-estate, legal, accounting, …) become sibling directories with the same internal shape.
+The repo is **two-level scoped** — by domain (financial-services; future: real-estate, legal, …) and within each domain by **vertical** (the workflow team: investment-banking, equity-research, fund-admin, …). Each vertical groups its own plugin, agents, and cookbooks together.
 
 ```
 plugins/
   financial-services/
-    agents/                    # Named workflow agents — one self-contained plugin each
-    verticals/                 # Skill + command bundles by FSI vertical, plus MCP connectors
-    cookbooks/                 # Claude Managed Agent cookbooks (one per named agent)
+    <vertical>/                # e.g. investment-banking, fund-admin
+      plugin/                  # the vertical's own plugin (skills + commands + MCPs)
+      agents/                  # workflow agents owned by this vertical
+      cookbooks/               # Managed Agent cookbooks for this vertical's agents
   shared/
-    claude-for-msft-365-install/   # Admin tooling for the Claude Microsoft 365 add-in
+    claude-for-msft-365-install/   # cross-domain admin tooling
 scripts/                       # bump-versions.sh, build-bundle.sh, verify-bundle.sh
 ```
 
-Marketplace entries carry a `category` field (`financial-services` or `admin-tools`) plus `tags` (`agent`, `vertical`, `modeling`, etc.), so the Cowork/Claude Code browse UI groups them naturally regardless of file path.
+Adding a new vertical or domain is just `mkdir`. Marketplace entries carry a `category` field (`financial-services` or `admin-tools`) plus `tags` (`agent`, `vertical`, `modeling`, etc.), so the Cowork/Claude Code browse UI groups them naturally regardless of file path.
 
 ## Vertical Plugins
 
@@ -73,23 +74,23 @@ Start with **financial-analysis** — it carries the shared modeling skills and 
 
 | Plugin | What it adds |
 |---|---|
-| **[financial-analysis](./plugins/financial-services/verticals/financial-analysis)** *(core)* | Comps, DCF, LBO, 3-statement, deck QC, Excel audit. All 11 data connectors. |
-| **[investment-banking](./plugins/financial-services/verticals/investment-banking)** | CIMs, teasers, process letters, buyer lists, merger models, deal tracking. |
-| **[equity-research](./plugins/financial-services/verticals/equity-research)** | Earnings notes, initiations, model updates, thesis and catalyst tracking. |
-| **[private-equity](./plugins/financial-services/verticals/private-equity)** | Sourcing, screening, diligence checklists, IC memos, portfolio monitoring. |
-| **[wealth-management](./plugins/financial-services/verticals/wealth-management)** | Client reviews, financial plans, rebalancing, reporting, TLH. |
-| **[fund-admin](./plugins/financial-services/verticals/fund-admin)** | GL recon, break tracing, accruals, roll-forwards, variance commentary, NAV tie-out. |
-| **[operations](./plugins/financial-services/verticals/operations)** | KYC document parsing and rules-grid evaluation. |
+| **[financial-analysis](./plugins/financial-services/financial-analysis/plugin)** *(core)* | Comps, DCF, LBO, 3-statement, deck QC, Excel audit. All 11 data connectors. |
+| **[investment-banking](./plugins/financial-services/investment-banking/plugin)** | CIMs, teasers, process letters, buyer lists, merger models, deal tracking. |
+| **[equity-research](./plugins/financial-services/equity-research/plugin)** | Earnings notes, initiations, model updates, thesis and catalyst tracking. |
+| **[private-equity](./plugins/financial-services/private-equity/plugin)** | Sourcing, screening, diligence checklists, IC memos, portfolio monitoring. |
+| **[wealth-management](./plugins/financial-services/wealth-management/plugin)** | Client reviews, financial plans, rebalancing, reporting, TLH. |
+| **[fund-admin](./plugins/financial-services/fund-admin/plugin)** | GL recon, break tracing, accruals, roll-forwards, variance commentary, NAV tie-out. |
+| **[operations](./plugins/financial-services/operations/plugin)** | KYC document parsing and rules-grid evaluation. |
 
 ## How It Fits Together
 
 | | What it is | Where it lives |
 |---|---|---|
-| **Agents** | Self-contained plugins that own a workflow end to end — system prompt plus the skills it uses. Cowork and the Managed Agent wrapper both reference the same directory. | `plugins/financial-services/agents/<slug>/` |
-| **Skills** | Domain expertise, conventions, and step-by-step methods Claude draws on automatically when relevant. Authored once in the verticals; each agent bundles a synced copy of the ones it needs. | `plugins/financial-services/verticals/<vertical>/skills/` (source) · `plugins/financial-services/agents/<slug>/skills/` (bundled) |
-| **Commands** | Slash actions you trigger explicitly (`/comps`, `/earnings`, `/ic-memo`). | `plugins/financial-services/verticals/<vertical>/commands/` |
-| **Connectors** | [MCP servers](https://modelcontextprotocol.io/) that wire Claude to your data — terminals, research platforms, document stores. | `plugins/financial-services/verticals/financial-analysis/.mcp.json` |
-| **Managed-agent wrappers** | `agent.yaml` + depth-1 subagents + steering examples for headless deployment. | `plugins/financial-services/cookbooks/<slug>/` |
+| **Agents** | Self-contained plugins that own a workflow end to end — system prompt plus the skills it uses. Cowork and the Managed Agent wrapper both reference the same directory. | `plugins/financial-services/<vertical>/agents/<slug>/` |
+| **Skills** | Domain expertise, conventions, and step-by-step methods Claude draws on automatically when relevant. Authored once in the vertical plugin; each agent bundles a synced copy of the ones it needs. | `plugins/financial-services/<vertical>/plugin/skills/` (source) · `plugins/financial-services/<vertical>/agents/<slug>/skills/` (bundled) |
+| **Commands** | Slash actions you trigger explicitly (`/comps`, `/earnings`, `/ic-memo`). | `plugins/financial-services/<vertical>/plugin/commands/` |
+| **Connectors** | [MCP servers](https://modelcontextprotocol.io/) that wire Claude to your data — terminals, research platforms, document stores. | `plugins/financial-services/financial-analysis/plugin/.mcp.json` |
+| **Managed-agent wrappers** | `agent.yaml` + depth-1 subagents + steering examples for headless deployment. | `plugins/financial-services/<vertical>/cookbooks/<slug>/` |
 
 Everything is file-based — markdown and JSON, no build step on the customer side.
 

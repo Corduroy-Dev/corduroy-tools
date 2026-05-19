@@ -1,0 +1,9 @@
+{
+  "name": "kyc-screener",
+  "version": "0.3.0",
+  "description": "Parses onboarding docs, runs the rules engine, flags gaps",
+  "author": {
+    "name": "Corduroy Intelligence",
+    "email": "mmoore@corduroyintelligence.com"
+  }
+}

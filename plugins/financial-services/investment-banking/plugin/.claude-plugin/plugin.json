@@ -1,0 +1,9 @@
+{
+  "name": "investment-banking",
+  "version": "0.3.0",
+  "description": "Investment banking productivity tools: client and market insights, deck creation, financial analysis, and transaction management",
+  "author": {
+    "name": "Corduroy Intelligence",
+    "email": "mmoore@corduroyintelligence.com"
+  }
+}

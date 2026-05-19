@@ -1,0 +1,9 @@
+{
+  "name": "model-builder",
+  "version": "0.3.0",
+  "description": "DCF, LBO, 3-statement, comps - live in Excel",
+  "author": {
+    "name": "Corduroy Intelligence",
+    "email": "mmoore@corduroyintelligence.com"
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "name": "statement-auditor",
-  "version": "0.2.0",
-  "description": "Audits pre-generated LP statements before distribution",
-  "author": {
-    "name": "Corduroy Intelligence",
-    "email": "mmoore@corduroyintelligence.com"
-  }
-}

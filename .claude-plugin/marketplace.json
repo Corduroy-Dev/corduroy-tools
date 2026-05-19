@@ -5,11 +5,11 @@
     "email": "mmoore@corduroyintelligence.com"
   },
   "description": "Corduroy Intelligence plugin marketplace — domain-scoped workflow agents, vertical skill bundles, and shared admin tooling for Claude Code and Cowork.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "plugins": [
     {
       "name": "financial-analysis",
-      "source": "./plugins/financial-services/verticals/financial-analysis",
+      "source": "./plugins/financial-services/financial-analysis/plugin",
       "description": "Core financial modeling and analysis tools: DCF, comps, LBO, 3-statement models, competitive analysis, and deck QC.",
       "category": "financial-services",
       "tags": [
@@ -20,7 +20,7 @@
     },
     {
       "name": "investment-banking",
-      "source": "./plugins/financial-services/verticals/investment-banking",
+      "source": "./plugins/financial-services/investment-banking/plugin",
       "description": "Investment banking productivity tools — client and market insights, deck creation, financial analysis, and transaction management.",
       "category": "financial-services",
       "tags": [
@@ -30,7 +30,7 @@
     },
     {
       "name": "equity-research",
-      "source": "./plugins/financial-services/verticals/equity-research",
+      "source": "./plugins/financial-services/equity-research/plugin",
       "description": "Equity research tools: earnings analysis, initiating coverage reports, and research workflows.",
       "category": "financial-services",
       "tags": [
@@ -40,7 +40,7 @@
     },
     {
       "name": "private-equity",
-      "source": "./plugins/financial-services/verticals/private-equity",
+      "source": "./plugins/financial-services/private-equity/plugin",
       "description": "Private equity deal sourcing and workflow tools: company discovery, CRM integration, and founder outreach.",
       "category": "financial-services",
       "tags": [
@@ -50,7 +50,7 @@
     },
     {
       "name": "wealth-management",
-      "source": "./plugins/financial-services/verticals/wealth-management",
+      "source": "./plugins/financial-services/wealth-management/plugin",
       "description": "Wealth management and financial advisory tools: client reviews, financial planning, portfolio analysis, and client reporting.",
       "category": "financial-services",
       "tags": [
@@ -60,7 +60,7 @@
     },
     {
       "name": "fund-admin",
-      "source": "./plugins/financial-services/verticals/fund-admin",
+      "source": "./plugins/financial-services/fund-admin/plugin",
       "description": "Fund administration and finance ops: GL reconciliation, break tracing, accruals, roll-forwards, variance commentary, NAV tie-out.",
       "category": "financial-services",
       "tags": [
@@ -70,7 +70,7 @@
     },
     {
       "name": "operations",
-      "source": "./plugins/financial-services/verticals/operations",
+      "source": "./plugins/financial-services/operations/plugin",
       "description": "Operational workflows: KYC document parsing and rules-grid evaluation.",
       "category": "financial-services",
       "tags": [
@@ -80,7 +80,7 @@
     },
     {
       "name": "pitch-agent",
-      "source": "./plugins/financial-services/agents/pitch-agent",
+      "source": "./plugins/financial-services/investment-banking/agents/pitch-agent",
       "description": "Comps, precedents, LBO to a branded pitch deck, end to end.",
       "category": "financial-services",
       "tags": [
@@ -90,17 +90,17 @@
     },
     {
       "name": "market-researcher",
-      "source": "./plugins/financial-services/agents/market-researcher",
+      "source": "./plugins/financial-services/equity-research/agents/market-researcher",
       "description": "Sector or theme to industry overview, competitive landscape, peer comps, and ideas shortlist.",
       "category": "financial-services",
       "tags": [
         "agent",
-        "research"
+        "equity-research"
       ]
     },
     {
       "name": "earnings-reviewer",
-      "source": "./plugins/financial-services/agents/earnings-reviewer",
+      "source": "./plugins/financial-services/equity-research/agents/earnings-reviewer",
       "description": "Earnings call and filings to model update to note draft.",
       "category": "financial-services",
       "tags": [
@@ -110,17 +110,17 @@
     },
     {
       "name": "meeting-prep-agent",
-      "source": "./plugins/financial-services/agents/meeting-prep-agent",
+      "source": "./plugins/financial-services/wealth-management/agents/meeting-prep-agent",
       "description": "Briefing pack before every client meeting.",
       "category": "financial-services",
       "tags": [
         "agent",
-        "coverage"
+        "wealth-management"
       ]
     },
     {
       "name": "model-builder",
-      "source": "./plugins/financial-services/agents/model-builder",
+      "source": "./plugins/financial-services/financial-analysis/agents/model-builder",
       "description": "DCF, LBO, 3-statement, comps — live in Excel.",
       "category": "financial-services",
       "tags": [
@@ -130,7 +130,7 @@
     },
     {
       "name": "gl-reconciler",
-      "source": "./plugins/financial-services/agents/gl-reconciler",
+      "source": "./plugins/financial-services/fund-admin/agents/gl-reconciler",
       "description": "Finds breaks, traces root cause, routes for sign-off.",
       "category": "financial-services",
       "tags": [
@@ -140,7 +140,7 @@
     },
     {
       "name": "kyc-screener",
-      "source": "./plugins/financial-services/agents/kyc-screener",
+      "source": "./plugins/financial-services/operations/agents/kyc-screener",
       "description": "Parses onboarding docs, runs the rules engine, flags gaps.",
       "category": "financial-services",
       "tags": [
@@ -150,7 +150,7 @@
     },
     {
       "name": "valuation-reviewer",
-      "source": "./plugins/financial-services/agents/valuation-reviewer",
+      "source": "./plugins/financial-services/fund-admin/agents/valuation-reviewer",
       "description": "Ingests GP packages, runs valuation template, stages LP reporting.",
       "category": "financial-services",
       "tags": [
@@ -160,7 +160,7 @@
     },
     {
       "name": "month-end-closer",
-      "source": "./plugins/financial-services/agents/month-end-closer",
+      "source": "./plugins/financial-services/fund-admin/agents/month-end-closer",
       "description": "Accruals, roll-forwards, variance commentary.",
       "category": "financial-services",
       "tags": [
@@ -170,7 +170,7 @@
     },
     {
       "name": "statement-auditor",
-      "source": "./plugins/financial-services/agents/statement-auditor",
+      "source": "./plugins/financial-services/fund-admin/agents/statement-auditor",
       "description": "Audits pre-generated LP statements before distribution.",
       "category": "financial-services",
       "tags": [

@@ -22,6 +22,25 @@ This repository is a derivative of [`anthropics/financial-services`](https://git
 - **Marketplace catalog enriched:** every plugin entry now carries `category` (`financial-services` or `admin-tools`) plus descriptive `tags` (`agent`, `vertical`, `modeling`, …) so the Cowork/Claude Code browse UI can group and filter.
 - **Plugin count:** 20 (v0.1.0) → 18 (v0.2.0) after partner-plugin removal.
 
+## Changes applied for the v0.3.0 release
+
+- **Two-level scoping inside each domain.** Previously each domain dir contained sibling `agents/`, `verticals/`, and `cookbooks/` directories. v0.3.0 nests them inside each vertical so a single workflow's plugin + its owned agents + their cookbooks live together:
+  - `plugins/financial-services/verticals/<v>/` → `plugins/financial-services/<v>/plugin/`
+  - `plugins/financial-services/agents/<a>/` → `plugins/financial-services/<owning-vertical>/agents/<a>/`
+  - `plugins/financial-services/cookbooks/<a>/` → `plugins/financial-services/<owning-vertical>/cookbooks/<a>/`
+- **Agent → vertical assignments** (made by reading each agent's bundled skills + system prompt + workflow persona):
+  - financial-analysis: model-builder
+  - investment-banking: pitch-agent
+  - equity-research: earnings-reviewer, market-researcher
+  - wealth-management: meeting-prep-agent
+  - fund-admin: gl-reconciler, month-end-closer, statement-auditor, valuation-reviewer
+  - operations: kyc-screener
+  - private-equity: (no agents — vertical plugin available standalone)
+- **Cookbook relative paths unchanged.** Cookbook `agent.yaml` files still reference `../../agents/<slug>/` because both cookbook and agent moved in lockstep into the same vertical (same relative depth).
+- **Removed:** the top-level `plugins/financial-services/cookbooks/README.md` index — it documented stale path conventions and stale vertical assignments inherited from the upstream Anthropic layout. Each individual cookbook's own README is preserved.
+- **`marketplace.json` updated:** all 18 plugin `source` paths point to the new locations. `category` and `tags` unchanged.
+- **Repo name change** (v0.2.x → v0.3.x window): `Corduroy-Dev/corduroy-plugins` → `Corduroy-Dev/corduroy-tools`. GitHub maintains a permanent redirect from the old URL.
+
 See `git log` for the full file-level diff. The upstream baseline is `anthropics/financial-services@main` as of 2026-05-19.
 
 ## Trademarks
