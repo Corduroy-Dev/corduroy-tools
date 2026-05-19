@@ -6,13 +6,13 @@ This repository is a private derivative of [`anthropics/financial-services`](htt
 
 ## What this is
 
-A Claude plugin marketplace, packaged for private distribution to Corduroy customers:
+A Claude plugin marketplace hosted at `github.com/Corduroy-Dev/corduroy-plugins` (public):
 
 - `.claude-plugin/marketplace.json` — the catalog, name `corduroy`, owner Corduroy Intelligence
 - 20 plugins under `plugins/agent-plugins/`, `plugins/vertical-plugins/`, `plugins/partner-built/`, plus the root-level `claude-for-msft-365-install/`
 - 10 managed-agent cookbooks under `managed-agent-cookbooks/` (ride along as reference for customers wanting headless deployment)
 
-Customers receive two artifacts: a single marketplace zip (Claude Code CLI install) and a directory of per-plugin zips (Cowork desktop upload).
+Customers install by pasting the GitHub URL into Claude Code (`/plugin marketplace add Corduroy-Dev/corduroy-plugins`) or Cowork (Customize → Browse plugins → Personal → + → Add marketplace from GitHub). Offline zip bundles produced by `scripts/build-bundle.sh` are still available for air-gapped customers.
 
 ## Repository layout
 
@@ -51,9 +51,14 @@ plugins/partner-built/spglobal/LICENSE  # S&P Global's own Apache 2.0 — DO NOT
 
 ```bash
 ./scripts/bump-versions.sh 0.1.1     # bumps every plugin.json + marketplace.json
-./scripts/build-bundle.sh             # produces both the marketplace zip and per-plugin zips
-./scripts/verify-bundle.sh            # gates delivery — exits non-zero on any failure
+./scripts/build-bundle.sh             # produces offline zips (marketplace + per-plugin Cowork)
+./scripts/verify-bundle.sh            # gates the zips — exits non-zero on any failure
+git add -A && git commit -m "Release v0.1.1"
+git tag v0.1.1
+git push origin main --tags
 ```
+
+The GitHub push is what makes the release live for customers — Claude Code/Cowork pull from `Corduroy-Dev/corduroy-plugins`. The zip artifacts are kept for air-gapped delivery; upload them as GitHub release assets if customers want a stable download URL.
 
 **Versioning rule:** `version` lives **only** in each `.claude-plugin/plugin.json`. Don't add a per-plugin `version` to `marketplace.json` entries — when both are set, plugin.json silently wins, which masks the marketplace value. `bump-versions.sh` is the single canonical bumper.
 
@@ -62,8 +67,7 @@ plugins/partner-built/spglobal/LICENSE  # S&P Global's own Apache 2.0 — DO NOT
 ## What's deliberately NOT in here
 
 - No `.github/` workflows. No `.githooks/`. The upstream's pre-commit version-bump enforcement is replaced by `bump-versions.sh` being the only sanctioned bump path.
-- No `scripts/check.py` / `validate.py` / `orchestrate.py` / `sync-agent-skills.py` from upstream. Audit before reintroducing — they may reference Anthropic-internal endpoints. Use `rg 'anthropic|piccolella' scripts/` before re-bundling any of them.
-- No public GitHub remote. The customer-facing distribution is the zip(s) produced by `build-bundle.sh`.
+- No `scripts/check.py` / `validate.py` / `orchestrate.py` / `sync-agent-skills.py` from upstream are wired into CI. They're kept in `scripts/` for local use; before re-bundling any of them, audit with `rg 'anthropic|piccolella' scripts/`.
 
 ## Pointers
 

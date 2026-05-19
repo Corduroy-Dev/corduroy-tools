@@ -14,10 +14,20 @@ What's in the bundle:
 
 ## Install
 
-See **[INSTALL.md](./INSTALL.md)** for the customer install paths (Claude Code CLI and Cowork). The short version:
+See **[INSTALL.md](./INSTALL.md)** for the full customer install instructions. The short version, same source for both hosts:
 
-- **Claude Code:** extract `corduroy-plugins-v0.1.0.zip`, then `/plugin marketplace add <path>` and `/plugin install <name>@corduroy`.
-- **Cowork:** upload the per-plugin zips from `corduroy-plugins-v0.1.0-cowork/` via **Organization settings → Plugins → Add plugin → Upload a file** (one per plugin you want).
+**Claude Code:**
+
+```
+/plugin marketplace add Corduroy-Dev/corduroy-plugins
+/plugin install financial-analysis@corduroy
+/plugin install pitch-agent@corduroy
+# ...
+```
+
+**Cowork (Claude.ai desktop):** Customize → Browse plugins → Personal → + → Add marketplace from GitHub → paste `https://github.com/Corduroy-Dev/corduroy-plugins`. Then install plugins from the browser.
+
+Offline install bundles (zip + per-plugin Cowork uploads) are available on request — see [INSTALL.md](./INSTALL.md).
 
 ## Agents
 
