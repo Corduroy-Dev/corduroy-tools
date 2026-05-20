@@ -5,7 +5,7 @@
     "email": "mmoore@corduroyintelligence.com"
   },
   "description": "Corduroy Intelligence plugin marketplace — domain-scoped workflow agents and vertical skill bundles for Claude Code and Cowork. Domains: financial-services, real-estate.",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "plugins": [
     {
       "name": "financial-analysis",

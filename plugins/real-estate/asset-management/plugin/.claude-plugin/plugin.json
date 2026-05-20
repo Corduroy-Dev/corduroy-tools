@@ -1,6 +1,6 @@
 {
   "name": "asset-management",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Real-estate asset-management workflow: variance/NOI explanation, property issue detection, lease abstraction, and capex forecasting across a property book",
   "author": {
     "name": "Corduroy Intelligence",
