@@ -6,7 +6,7 @@
 
 This guide walks you through adding Corduroy's financial-services and real-estate toolkit to your Claude Cowork workspace. Takes about 5 minutes. You don't need a GitHub account or any developer tools — just the Claude desktop app and an active Cowork plan.
 
-*Last updated: 2026-05-19*
+*Last updated: 2026-05-20 (v0.5.1)*
 
 ---
 
@@ -122,6 +122,63 @@ Close the Browse plugins window and start a new conversation in Cowork.
 - `@meeting-prep-agent build a briefing for tomorrow's review with the Jones family`
 - `@deal-analyzer run intake on the multifamily target — OM and rent roll attached`
 - `@asset-pulse run a September review on the property — operating statement and walkthroughs attached`
+
+---
+
+## Real estate workflows in depth
+
+The `real-estate` domain ships two complementary workflows. They sit at different points in the asset lifecycle and answer different questions.
+
+### `acquisition` — for "a new deal hit my desk"
+
+Install: `acquisition` (vertical) + `deal-analyzer` (agent).
+
+This is the workflow you run when a broker sends an OM, when a sponsor pitches you a deal, or when you need to evaluate an off-market opportunity before committing diligence dollars. It produces a partner-ready intake packet so an IC can form a calibrated view in 30 minutes.
+
+**Skills in the `acquisition` vertical:**
+
+| Skill | When to use | What to give it | What you get back |
+|---|---|---|---|
+| `om-analyzer` (`/om-analyzer`) | First-pass intake on any OM | OM PDF or text (optionally rent roll, T-12, debt schedule, environmental reports) | Investment-memo draft, risks list, "too good to be true" flags, broker questions, cap-rate / yield summary |
+| `rent-roll-intelligence` (`/rent-roll`) | Diligencing the seller's rent roll | Rent roll as CSV / XLSX / pasted table | Occupancy reality check (effective vs reported), concession density, expiration cliffs, "fake occupancy" pattern flags |
+| `market-snapshot` (`/market-snapshot`) | Underwriting in a market you don't yet know cold | MSA / submarket name + asset class + optional pasted source data | One-page primer: demand drivers, supply pipeline, recent transaction caps, watchlist risks |
+| `model-reviewer` (`/acquisition:model-reviewer`) | Auditing the broker's or your analyst's financial model | Excel-as-CSV or pasted formulas | Structural-integrity findings, RE-specific assumption flags, IRR-manipulation patterns |
+| `ic-memo` (`/acquisition:ic-memo`) | Drafting the IC memo from the above | Outputs of the four skills above + debt terms + thesis | Structured IC memo with exec summary, thesis, business plan, returns analysis, risks & mitigants, decision ask |
+
+**End-to-end via the agent:** `@deal-analyzer` orchestrates all five skills against a single deal. You give it the inputs; it produces five artifacts (OM analysis, rent-roll analysis, market snapshot, model review, IC memo) plus a one-paragraph executive summary tying them together. Use this when you have time for the full first-pass workup — typically 10–30 minutes of model thinking.
+
+**Example natural prompt to start a workup:**
+
+> "Run the deal-analyzer on this acquisition target: 220-unit garden-style multifamily, secondary Sunbelt market, asking $32M (5.4% cap). Broker is pitching value-add with $3.2M renovation budget. OM and rent roll attached below."
+
+The agent will scope the ask, walk through each skill, flag what it can't verify, and produce a partner-ready packet ending with a recommendation.
+
+### `asset-management` — for "what's happening in my portfolio"
+
+Install: `asset-management` (vertical) + `asset-pulse` (agent).
+
+This is the workflow you run monthly or quarterly when you need to translate the raw operating data into a portfolio narrative — what NOI did, why it did that, what's trending wrong, what to action this month, and what to escalate. It produces a partner-ready report you can hand off for IC and (with light polish) for LP reporting.
+
+**Skills in the `asset-management` vertical:**
+
+| Skill | When to use | What to give it | What you get back |
+|---|---|---|---|
+| `asset-mgmt-copilot` (`/asset-mgmt-copilot`) | Monthly variance review | Operating statement + variance report + occupancy/leasing report | NOI bridge (line-by-line drivers), variance attribution, watchlist by property, action items by owner |
+| `property-issue-detection` (`/property-issues`) | Scanning ground-level data for anomalies | Walkthrough notes (free text OK), maintenance work-orders, vendor invoices, utility bills | Critical issues, repeat-hit patterns across weeks, vendor / utility / leasing-velocity anomalies — each tied to specific evidence |
+| `lease-abstraction` (`/lease-abstract`) | Capturing the economics of a new lease | Lease document (PDF or text) + asset class | Structured abstract: base rent, escalations, renewals, CAM, TI obligations, guarantors, special clauses, citations to lease sections |
+| `capex-forecasting` (`/capex-forecast`) | Budget season, refinance prep, annual planning | Property age, asset inventory, reserve schedule, recent capex history | 5-year forecast by year and by category, reserve-adequacy verdict, urgency-prioritized line items |
+
+**End-to-end via the agent:** `@asset-pulse` orchestrates all four skills against a property or portfolio for a given period. The deliverable is a one-page partner-ready narrative plus the four underlying detailed artifacts. Built-in distinction between LP-disclosable content and internal-only operational detail.
+
+**Example natural prompt to start a periodic review:**
+
+> "Run an asset-pulse on this property for September: NOI was 5.6% below budget, leasing velocity tracking behind pace for the past 60 days, three HVAC tickets in the last two weeks. Here's the operating statement, the variance report, four weeks of walkthrough notes, and the maintenance work-order log."
+
+The agent will build the NOI bridge, scan the walkthroughs for repeat patterns, refresh the capex schedule with the period's actuals, and produce a partner-ready report.
+
+### Tuning these to your firm
+
+The skills are written for generic real-estate workflows; they pattern-match on what a careful underwriter or asset manager would look for in any deal. The specific items your firm pays attention to — preferred IC structure, your standard sensitivity tables, your typical hold-period assumptions, your preventive-maintenance focus checklist — get tuned in your engagement work with us, not in the public marketplace. Tell us what's missing and we'll prioritize it for the next release.
 
 ---
 
