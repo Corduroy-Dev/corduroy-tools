@@ -1,0 +1,9 @@
+{
+  "name": "deal-analyzer",
+  "version": "0.5.0",
+  "description": "End-to-end real-estate deal intake: OM + rent roll + market context + model review then IC memo",
+  "author": {
+    "name": "Corduroy Intelligence",
+    "email": "mmoore@corduroyintelligence.com"
+  }
+}

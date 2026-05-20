@@ -1,0 +1,9 @@
+{
+  "name": "asset-pulse",
+  "version": "0.5.0",
+  "description": "End-to-end real-estate portfolio review: variance + walkthroughs + capex + leasing produces narrative + watchlist + action items",
+  "author": {
+    "name": "Corduroy Intelligence",
+    "email": "mmoore@corduroyintelligence.com"
+  }
+}

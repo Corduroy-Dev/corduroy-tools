@@ -1,6 +1,6 @@
 {
   "name": "operations",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Operational workflows: KYC document parsing and rules-grid evaluation",
   "author": {
     "name": "Corduroy Intelligence",

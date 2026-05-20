@@ -4,7 +4,7 @@
 
 # Installing Corduroy in Claude Cowork
 
-This guide walks you through adding Corduroy's financial-services toolkit to your Claude Cowork workspace. Takes about 5 minutes. You don't need a GitHub account or any developer tools — just the Claude desktop app and an active Cowork plan.
+This guide walks you through adding Corduroy's financial-services and real-estate toolkit to your Claude Cowork workspace. Takes about 5 minutes. You don't need a GitHub account or any developer tools — just the Claude desktop app and an active Cowork plan.
 
 *Last updated: 2026-05-19*
 
@@ -14,11 +14,11 @@ This guide walks you through adding Corduroy's financial-services toolkit to you
 
 After install, you'll have access to:
 
-- **Workflow agents** for pitch decks, earnings updates, sector research, client-meeting prep, GL reconciliation, NAV tie-out, KYC reviews, and more
-- **Vertical skill bundles** covering investment banking, equity research, private equity, wealth management, fund admin, and operations
+- **Workflow agents** for pitch decks, earnings updates, sector research, client-meeting prep, GL reconciliation, NAV tie-out, KYC reviews, real-estate deal intake, and portfolio asset-management reviews
+- **Vertical skill bundles** covering investment banking, equity research, private equity, wealth management, fund admin, operations, **real-estate acquisition**, and **real-estate asset management**
 - **11 data connectors** to Daloopa, Morningstar, FactSet, S&P Capital IQ, Moody's, MT Newswires, Aiera, LSEG, PitchBook, Chronograph, and Egnyte (you wire these to your firm's existing subscriptions when you're ready)
 
-All 17 plugins are listed at the end of this doc if you want to scan the full menu first.
+All 21 plugins are listed at the end of this doc if you want to scan the full menu first.
 
 ---
 
@@ -51,7 +51,7 @@ A window will open showing available plugin marketplaces.
 
 1. At the top of the window, click the **Personal** tab
 2. Click the **+** button
-3. Select **Add marketplace from GitHub**
+3. Select **Add marketplace **
 4. Paste this URL:
 
    ```
@@ -60,7 +60,7 @@ A window will open showing available plugin marketplaces.
 
 5. Confirm.
 
-The `corduroy` marketplace will appear in your Personal tab with all 17 plugins listed underneath.
+The `corduroy` marketplace will appear in your Personal tab with all 21 plugins listed underneath.
 
 ## Step 3 — Install the plugins you need
 
@@ -82,6 +82,8 @@ Click on `financial-analysis` in the marketplace list and install it.
 | **Wealth management / advisory** | `wealth-management`, `meeting-prep-agent` (client-meeting briefings) |
 | **Fund administration / accounting** | `fund-admin`, `gl-reconciler` (daily GL recon), `month-end-closer` (close package), `statement-auditor` (LP statement audits), `valuation-reviewer` (quarterly portfolio valuations) |
 | **Operations / compliance** | `operations`, `kyc-screener` (KYC document review) |
+| **Real estate — acquisition / underwriting** | `acquisition` (skills + commands), `deal-analyzer` (end-to-end deal intake: OM → rent roll → market → model → IC memo) |
+| **Real estate — asset management / portfolio ops** | `asset-management` (skills + commands), `asset-pulse` (monthly/quarterly portfolio review) |
 
 You can always install more later — Corduroy stays visible in your Personal tab.
 
@@ -95,9 +97,16 @@ Close the Browse plugins window and start a new conversation in Cowork.
 - `/dcf` — DCF valuation
 - `/lbo` — leveraged buyout model
 - `/earnings` — post-earnings analysis
-- `/ic-memo` — investment committee memo
+- `/ic-memo` — investment committee memo (RE flavor lives under `/acquisition:ic-memo`; PE flavor under `/private-equity:ic-memo`)
 - `/client-review` — client-meeting prep
 - `/cim` — confidential information memorandum
+- `/om-analyzer` — real-estate offering memorandum analysis
+- `/rent-roll` — rent-roll diligence
+- `/market-snapshot` — one-page real-estate market primer
+- `/asset-mgmt-copilot` — portfolio variance / NOI explanation
+- `/property-issues` — property-walkthrough anomaly scan
+- `/lease-abstract` — lease-document field extraction
+- `/capex-forecast` — 5-year capex forecast
 - ... and many more
 
 **Skills fire automatically.** You can also just describe what you're trying to do — Claude pulls in the relevant skill on its own. Examples:
@@ -111,6 +120,8 @@ Close the Browse plugins window and start a new conversation in Cowork.
 - `@pitch-agent build a sell-side pitch for Acme Corp`
 - `@earnings-reviewer process Microsoft's Q3 earnings`
 - `@meeting-prep-agent build a briefing for tomorrow's review with the Jones family`
+- `@deal-analyzer run intake on the multifamily target — OM and rent roll attached`
+- `@asset-pulse run a September review on the property — operating statement and walkthroughs attached`
 
 ---
 
@@ -134,7 +145,7 @@ When we ship a new release, you'll see an "Update available" indicator on the re
 
 | Symptom | Fix |
 |---|---|
-| No "Cowork" tab in Claude desktop | Your account doesn't have Cowork enabled. Contact your admin or `mmoore@corduroyintelligence.com`. |
+| No "Cowork" tab in Claude desktop | Your account doesn't have Cowork enabled. Contact your admin or `msloan@corduroyintelligence.com`. |
 | "Add marketplace from GitHub" option missing | Cowork or Skills is disabled for your account. Same fix as above. |
 | Marketplace adds but shows 0 plugins | Close the window and reopen Browse plugins. If still empty, restart Claude desktop. |
 | Install spins forever | Network issue reaching github.com. Try a different network or VPN off. |
@@ -159,6 +170,8 @@ If you want to see the complete menu before installing, here's everything in the
 | `wealth-management` | Client reviews, financial plans, rebalancing, reporting, tax-loss harvesting |
 | `fund-admin` | GL recon, break tracing, accruals, roll-forwards, variance commentary, NAV tie-out |
 | `operations` | KYC document parsing and rules-grid evaluation |
+| `acquisition` *(real estate)* | OM analysis, rent-roll intelligence, market snapshots, model review, IC memo drafting |
+| `asset-management` *(real estate)* | Variance/NOI explanation, property issue detection, lease abstraction, 5-year capex forecasting |
 
 ### Workflow agents (end-to-end)
 
@@ -174,6 +187,8 @@ If you want to see the complete menu before installing, here's everything in the
 | `statement-auditor` | Pre-generated LP statement batch + NAV pack → tie-out + discrepancy report |
 | `valuation-reviewer` | GP valuation packages → valuation template review → LP-reporting package |
 | `kyc-screener` | Onboarding doc packet → rules-engine + sanctions/PEP screening → gap report |
+| `deal-analyzer` *(real estate)* | OM + rent roll + market + model → IC memo (acquisition workup, end to end) |
+| `asset-pulse` *(real estate)* | Variance + walkthroughs + capex + leasing → narrative + watchlist + action items (periodic portfolio review) |
 
 ---
 

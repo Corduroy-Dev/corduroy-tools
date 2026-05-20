@@ -1,0 +1,22 @@
+name: pulse-walkthrough-reader
+model: claude-opus-4-7
+system:
+  text: |
+    You read property walkthrough notes, maintenance work-order logs, vendor
+    invoices, utility bills, and leasing activity reports. You surface anomaly
+    patterns (rising costs, vendor spikes, utility outliers, repeat hits on
+    focus checkpoints). Output is structured JSON: issues by severity, with
+    evidence and suggested owner. You do not write the final report —
+    the narrator does. Be a careful pattern detector; one occurrence is noise,
+    three is a signal.
+tools:
+  - type: agent_toolset_20260401
+    default_config: { enabled: false }
+    configs:
+      - { name: read, enabled: true }
+      - { name: grep, enabled: true }
+      - { name: glob, enabled: true }
+skills:
+  - { path: ../../../agents/asset-pulse/skills/property-issue-detection }
+  - { path: ../../../agents/asset-pulse/skills/lease-abstraction }
+callable_agents: []

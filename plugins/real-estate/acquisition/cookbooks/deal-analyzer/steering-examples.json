@@ -1,0 +1,14 @@
+[
+  {
+    "event": "Analyze new acquisition: 220-unit garden-style multifamily, secondary Sunbelt market, asking $32M (5.4% cap), value-add thesis with $3.2M renovation budget. OM attached; rent roll attached; broker pro-forma attached.",
+    "description": "Full multifamily value-add intake with OM + rent roll + broker model. Expect IC memo recommendation with stress-tested rent-growth and exit-cap assumptions."
+  },
+  {
+    "event": "Analyze new acquisition: 180,000 SF Class-A industrial, mid-Atlantic submarket, $42M asking, sale-leaseback, 10-year tenant on a NNN. OM attached; lease abstract attached.",
+    "description": "Single-tenant industrial sale-leaseback workup. Heavy emphasis on tenant credit, lease residual term, and exit-cap sensitivity to tenant renewal probability."
+  },
+  {
+    "event": "Re-run deal-analyzer on the prior multifamily target with seller-provided updated rent roll and revised model. Compare to prior analysis.",
+    "description": "Follow-up after seller revisions. Highlight what changed and whether the revisions move the IC recommendation."
+  }
+]

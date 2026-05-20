@@ -1,6 +1,6 @@
 {
   "name": "statement-auditor",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Audits pre-generated LP statements before distribution",
   "author": {
     "name": "Corduroy Intelligence",

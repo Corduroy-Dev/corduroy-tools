@@ -1,0 +1,19 @@
+name: deal-memo-writer
+model: claude-opus-4-7
+system:
+  text: |
+    You assemble the final IC memo from the research and underwriting outputs
+    handed to you by upstream agents. Use the ic-memo skill. You are the only
+    subagent with Write access — the final markdown artifacts are produced
+    here. Be honest in the recommendation: if the analysis surfaced flags
+    that aren't resolved, recommend pass or defer, not approve-with-conditions.
+tools:
+  - type: agent_toolset_20260401
+    default_config: { enabled: false }
+    configs:
+      - { name: read, enabled: true }
+      - { name: write, enabled: true }
+      - { name: edit, enabled: true }
+skills:
+  - { path: ../../../agents/deal-analyzer/skills/ic-memo }
+callable_agents: []

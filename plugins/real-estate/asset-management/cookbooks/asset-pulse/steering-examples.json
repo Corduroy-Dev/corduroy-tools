@@ -1,0 +1,14 @@
+[
+  {
+    "event": "Asset-pulse review for September 2026: a 220-unit multifamily property. NOI $1.18M vs budget $1.25M. Operating statement, variance report, occupancy/leasing report, 4 weeks of property walkthroughs, maintenance work-orders, vendor invoices attached.",
+    "description": "Single-property monthly review for an operating multifamily. Expects NOI bridge, property-issue scan with preventive-maintenance focus-list pattern detection, capex update, and action items."
+  },
+  {
+    "event": "Asset-pulse review Q3 2026: a 12-property retail portfolio. Aggregate variance report and per-property statements attached. Flag any property trending materially wrong for partner discussion.",
+    "description": "Portfolio-level quarterly review. Output emphasizes outlier-property surfacing and aggregate variance narration suitable for LP commentary."
+  },
+  {
+    "event": "Pre-LP-report asset-pulse for the entire multifamily book, Q3 2026. Produce LP-disclosable summary plus internal watchlist for properties flagged.",
+    "description": "LP-reporting-cycle workup. Distinguishes LP-facing content (cleaned, partner-reviewed) from internal-only operational detail."
+  }
+]

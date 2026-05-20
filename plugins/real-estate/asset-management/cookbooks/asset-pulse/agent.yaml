@@ -1,0 +1,24 @@
+# Asset Pulse — managed-agent cookbook
+
+name: asset-pulse
+model: claude-opus-4-7
+
+system:
+  file: ../../agents/asset-pulse/agents/asset-pulse.md
+  append: "You are running headless. Produce files in ./out/; do not assume an open editor or local environment."
+
+tools:
+  - type: agent_toolset_20260401
+    default_config: { enabled: false }
+    configs:
+      - { name: read, enabled: true }
+      - { name: grep, enabled: true }
+      - { name: glob, enabled: true }
+
+skills:
+  - { from_plugin: ../../agents/asset-pulse }
+
+callable_agents:
+  - { manifest: ./subagents/walkthrough-reader.yaml }
+  - { manifest: ./subagents/variance-analyst.yaml }
+  - { manifest: ./subagents/narrator.yaml }   # only leaf with Write

@@ -55,7 +55,7 @@ while IFS= read -r f; do
   [ "$VER" = "$VERSION" ] || fail "$f version=$VER (expected $VERSION)"
   count=$((count + 1))
 done < <(find "$TMP" -path '*/.claude-plugin/plugin.json' -not -path "$TMP/.claude-plugin/*" | sort)
-[ "$count" -ge 17 ] || fail "expected >=17 plugin.json files in marketplace zip, got $count"
+[ "$count" -ge 21 ] || fail "expected >=21 plugin.json files in marketplace zip, got $count"
 pass "$count plugin.json files: all valid, Corduroy-authored, version $VERSION"
 
 # Branding sweep: no upstream strings leak into plugin/skill content.
@@ -85,7 +85,7 @@ pass "no upstream branding strings in plugin-internal content"
 # ---- Verify per-plugin Cowork zips ----
 echo "→ Verifying Cowork per-plugin zips..."
 cowork_count=$(find "$COWORK_DIR" -name 'corduroy-*-v*.zip' | wc -l | tr -d ' ')
-[ "$cowork_count" = "17" ] || fail "expected 17 Cowork plugin zips, got $cowork_count"
+[ "$cowork_count" = "21" ] || fail "expected 21 Cowork plugin zips, got $cowork_count"
 pass "$cowork_count Cowork plugin zips present"
 
 # Spot-check one Cowork zip: must have plugin.json at .claude-plugin/plugin.json (zip root)

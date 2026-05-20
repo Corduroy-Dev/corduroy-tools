@@ -52,11 +52,29 @@ Each agent plugin is **self-contained** — it bundles the skills it uses, so in
 | | **[Statement Auditor](./plugins/financial-services/fund-admin/agents/statement-auditor)** | Audits LP statements before distribution |
 | **Operations & onboarding** | **[KYC Screener](./plugins/financial-services/operations/agents/kyc-screener)** | Parses onboarding docs, runs the rules engine, flags gaps |
 
-For Managed Agent deployment — `agent.yaml`, leaf-worker subagents, steering-event examples, and per-agent security notes — see the `cookbooks/` directory inside each vertical (e.g. [investment-banking/cookbooks/](./plugins/financial-services/investment-banking/cookbooks)).
+For Managed Agent deployment — `agent.yaml`, leaf-worker subagents, steering-event examples, and per-agent security notes — see the `cookbooks/` directory inside each vertical (e.g. [investment-banking/cookbooks/](./plugins/financial-services/investment-banking/cookbooks), [acquisition/cookbooks/](./plugins/real-estate/acquisition/cookbooks)).
+
+## Real Estate
+
+The real-estate domain ships with two starter verticals in v0.5.0:
+
+**Acquisition** — the "new deal hits my desk" workflow. Read inbound OMs, diligence rent rolls, build market snapshots, audit financial models, draft IC memos.
+
+| Plugin | What it does |
+|---|---|
+| **[acquisition](./plugins/real-estate/acquisition/plugin)** *(vertical)* | 5 skills: OM analysis, rent-roll intelligence, market snapshot, model reviewer, IC memo drafter |
+| **[deal-analyzer](./plugins/real-estate/acquisition/agents/deal-analyzer)** *(agent)* | End-to-end deal intake — OM + rent roll + market + model → IC memo package |
+
+**Asset Management** — the "what's happening across my portfolio" workflow. Review variance / NOI, scan property walkthroughs for issues, abstract leases, forecast capex.
+
+| Plugin | What it does |
+|---|---|
+| **[asset-management](./plugins/real-estate/asset-management/plugin)** *(vertical)* | 4 skills: variance/NOI explanation, property issue detection, lease abstraction, 5-year capex forecasting |
+| **[asset-pulse](./plugins/real-estate/asset-management/agents/asset-pulse)** *(agent)* | End-to-end periodic portfolio review — variance + walkthroughs + capex + leasing → narrative + watchlist + action items |
 
 ## Repository Layout
 
-The repo is **two-level scoped** — by domain (financial-services; future: real-estate, legal, …) and within each domain by **vertical** (the workflow team: investment-banking, equity-research, fund-admin, …). Each vertical groups its own plugin, agents, and cookbooks together.
+The repo is **two-level scoped** — by domain (financial-services, real-estate; future: legal, …) and within each domain by **vertical** (the workflow team: investment-banking, equity-research, fund-admin, acquisition, asset-management, …). Each vertical groups its own plugin, agents, and cookbooks together.
 
 ```
 plugins/
@@ -65,10 +83,15 @@ plugins/
       plugin/                  # the vertical's own plugin (skills + commands + MCPs)
       agents/                  # workflow agents owned by this vertical
       cookbooks/               # Managed Agent cookbooks for this vertical's agents
+  real-estate/
+    <vertical>/                # e.g. acquisition, asset-management
+      plugin/
+      agents/
+      cookbooks/
 scripts/                       # bump-versions.sh, build-bundle.sh, verify-bundle.sh
 ```
 
-Adding a new vertical or domain is just `mkdir`. Marketplace entries carry a `category` field (currently `financial-services`) plus `tags` (`agent`, `vertical`, `modeling`, etc.), so the Cowork/Claude Code browse UI groups them naturally regardless of file path.
+Adding a new vertical or domain is just `mkdir`. Marketplace entries carry a `category` field (`financial-services` or `real-estate`) plus `tags` (`agent`, `vertical`, `modeling`, etc.), so the Cowork/Claude Code browse UI groups them naturally regardless of file path.
 
 ## Vertical Plugins
 

@@ -9,13 +9,13 @@ This repository is a private derivative of [`anthropics/financial-services`](htt
 A Claude plugin marketplace hosted at `github.com/Corduroy-Dev/corduroy-tools` (public). The repo is **domain-scoped** so adding new industry verticals later is just a new subdirectory.
 
 - `.claude-plugin/marketplace.json` — the catalog (name `corduroy`), with `category` + `tags` per plugin
-- 17 plugins as of v0.4.0: all under `plugins/financial-services/` — 10 agents, 7 verticals, plus 10 managed-agent cookbooks (cookbooks aren't standalone plugins but ride along as reference for headless deployment)
+- 21 plugins as of v0.5.0: 17 under `plugins/financial-services/` (10 agents, 7 verticals, plus 10 managed-agent cookbooks) and 4 under `plugins/real-estate/` (2 verticals: `acquisition` + `asset-management`, with 2 agents: `deal-analyzer` + `asset-pulse`, plus 2 managed-agent cookbooks)
 
 Customers install by pasting the GitHub URL into Claude Code (`/plugin marketplace add Corduroy-Dev/corduroy-tools`) or Cowork (Customize → Browse plugins → Personal → + → Add marketplace from GitHub). Offline zip bundles produced by `scripts/build-bundle.sh` are still available for air-gapped customers.
 
 ## Repository layout
 
-The repo is **two-level scoped** — by domain (financial-services; future: real-estate, legal, …) and within each domain by **vertical** (the workflow team: investment-banking, equity-research, fund-admin, …). Each vertical groups its own plugin, agents, and cookbooks so all the code for one workflow lives in one folder.
+The repo is **two-level scoped** — by domain (financial-services, real-estate; future: legal, …) and within each domain by **vertical** (the workflow team: investment-banking, equity-research, fund-admin, acquisition, asset-management, …). Each vertical groups its own plugin, agents, and cookbooks so all the code for one workflow lives in one folder.
 
 ```
 .claude-plugin/marketplace.json              # the catalog (name: corduroy)
@@ -43,7 +43,9 @@ MODIFICATIONS.md                             # Apache 2.0 §4(b) modifications n
 LICENSE                                      # Apache 2.0 (upstream) — DO NOT REMOVE
 ```
 
-## Vertical → agent mapping (as of v0.3.0)
+## Vertical → agent mapping (as of v0.5.0)
+
+**financial-services domain:**
 
 | Vertical | Agents owned |
 |---|---|
@@ -54,6 +56,13 @@ LICENSE                                      # Apache 2.0 (upstream) — DO NOT 
 | `private-equity` | *(no agents yet — vertical plugin available standalone)* |
 | `fund-admin` | `gl-reconciler`, `month-end-closer`, `statement-auditor`, `valuation-reviewer` |
 | `operations` | `kyc-screener` |
+
+**real-estate domain:**
+
+| Vertical | Agents owned |
+|---|---|
+| `acquisition` | `deal-analyzer` |
+| `asset-management` | `asset-pulse` |
 
 ## Adding a new domain or vertical
 

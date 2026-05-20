@@ -4,8 +4,8 @@
     "name": "Corduroy Intelligence",
     "email": "mmoore@corduroyintelligence.com"
   },
-  "description": "Corduroy Intelligence plugin marketplace — domain-scoped workflow agents and vertical skill bundles for Claude Code and Cowork.",
-  "version": "0.4.0",
+  "description": "Corduroy Intelligence plugin marketplace — domain-scoped workflow agents and vertical skill bundles for Claude Code and Cowork. Domains: financial-services, real-estate.",
+  "version": "0.5.0",
   "plugins": [
     {
       "name": "financial-analysis",
@@ -176,6 +176,48 @@
       "tags": [
         "agent",
         "fund-admin"
+      ]
+    },
+    {
+      "name": "acquisition",
+      "source": "./plugins/real-estate/acquisition/plugin",
+      "description": "Real-estate acquisition workflow: OM analysis, rent-roll intelligence, market snapshots, model review, and IC memo drafting.",
+      "category": "real-estate",
+      "tags": [
+        "vertical",
+        "acquisition",
+        "underwriting"
+      ]
+    },
+    {
+      "name": "deal-analyzer",
+      "source": "./plugins/real-estate/acquisition/agents/deal-analyzer",
+      "description": "End-to-end real-estate deal intake: OM + rent roll + market context + model review then IC memo.",
+      "category": "real-estate",
+      "tags": [
+        "agent",
+        "acquisition"
+      ]
+    },
+    {
+      "name": "asset-management",
+      "source": "./plugins/real-estate/asset-management/plugin",
+      "description": "Real-estate asset-management workflow: variance/NOI explanation, property issue detection, lease abstraction, and capex forecasting.",
+      "category": "real-estate",
+      "tags": [
+        "vertical",
+        "asset-management",
+        "operations"
+      ]
+    },
+    {
+      "name": "asset-pulse",
+      "source": "./plugins/real-estate/asset-management/agents/asset-pulse",
+      "description": "End-to-end real-estate portfolio review: variance + walkthroughs + capex + leasing produces narrative + watchlist + action items.",
+      "category": "real-estate",
+      "tags": [
+        "agent",
+        "asset-management"
       ]
     }
   ],

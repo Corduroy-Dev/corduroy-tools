@@ -49,6 +49,19 @@ This repository is a derivative of [`anthropics/financial-services`](https://git
 - **Marketplace description** updated to drop "and shared admin tooling" reference.
 - **`scripts/verify-bundle.sh`** floor/exact assertions updated to match (18→17).
 
+## Changes applied for the v0.5.0 release
+
+- **New domain: `real-estate`.** Sibling to `financial-services/` under `plugins/`. The repo's two-level scoping accepts the addition with zero script changes; `bump-versions.sh`, `build-bundle.sh`, and `verify-bundle.sh` all use `find` and pick up the new tree automatically.
+- **Two starter verticals in real-estate:**
+  - `acquisition` — 5 skills (om-analyzer, rent-roll-intelligence, ic-memo, market-snapshot, model-reviewer) + 1 agent (deal-analyzer) + 1 managed-agent cookbook
+  - `asset-management` — 4 skills (asset-mgmt-copilot, property-issue-detection, lease-abstraction, capex-forecasting) + 1 agent (asset-pulse) + 1 managed-agent cookbook
+- **Plugin count:** 17 (v0.4.0) → 21 (v0.5.0). 4 new marketplace entries: `acquisition`, `deal-analyzer`, `asset-management`, `asset-pulse`. All `category: "real-estate"`.
+- **Marketplace description** updated to enumerate both domains.
+- **`scripts/verify-bundle.sh`** floor/exact assertions updated to match (17 → 21).
+- **Skill content:** all 9 new SKILL.md files are authored at production quality (1100-1700 words each) with RE-specific pattern checklists (e.g., a "fake occupancy" pattern list in `rent-roll-intelligence`, an IRR-manipulation checklist in `model-reviewer`, a preventive-maintenance focus-list pattern in `property-issue-detection`). Skill bodies are domain-generic; customer-specific tuning happens in private engagement folders, not in this public marketplace.
+- **No live data connectors yet.** Both verticals' `.mcp.json` files are empty `{}` in v0.5.0. v0.6 candidates include property-management-system connectors, market-data feeds, and rent-comp providers.
+- **v0.6 candidate skills** include `rent-pricing-assistant`, `walkthrough-intake`, `lp-letter`, `portfolio-narrator`, debt-vertical skills (loan-underwriting, refi-risk), and development-vertical skills (construction-draw-analyzer, permit-zoning).
+
 See `git log` for the full file-level diff. The upstream baseline is `anthropics/financial-services@main` as of 2026-05-19.
 
 ## Trademarks

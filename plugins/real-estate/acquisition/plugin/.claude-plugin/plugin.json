@@ -1,0 +1,9 @@
+{
+  "name": "acquisition",
+  "version": "0.5.0",
+  "description": "Real-estate acquisition workflow: OM analysis, rent-roll intelligence, market snapshots, model review, and IC memo drafting",
+  "author": {
+    "name": "Corduroy Intelligence",
+    "email": "mmoore@corduroyintelligence.com"
+  }
+}

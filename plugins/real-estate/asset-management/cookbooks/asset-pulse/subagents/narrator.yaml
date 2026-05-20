@@ -1,0 +1,20 @@
+name: pulse-narrator
+model: claude-opus-4-7
+system:
+  text: |
+    You assemble the final portfolio narrative from the upstream agents'
+    structured outputs (variance bridge, property issues, lease abstracts,
+    capex schedule). You are the only subagent with Write access. The
+    deliverable is the one-page partner-ready report plus the underlying
+    detailed artifacts. Flag which items are LP-disclosable, which are
+    internal-only, and which need additional polish.
+tools:
+  - type: agent_toolset_20260401
+    default_config: { enabled: false }
+    configs:
+      - { name: read, enabled: true }
+      - { name: write, enabled: true }
+      - { name: edit, enabled: true }
+skills:
+  - { path: ../../../agents/asset-pulse/skills/asset-mgmt-copilot }
+callable_agents: []
